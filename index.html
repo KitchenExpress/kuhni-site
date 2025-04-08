@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>КухниЭкспресс</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("Xlw8V8v2LngmP646R"); // Public User ID
+    })();
+  </script>
+  <style>
+    :root {
+      --main-orange: #FFA559;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+<!-- Header -->
+<header class="p-6 bg-white shadow flex items-center justify-between max-w-7xl mx-auto">
+    <!-- Лого слева -->
+    <div class="flex items-center space-x-4">
+      <img src="logo.png" alt="Логотип КухниЭкспресс" class="h-32 w-auto">
+  <div class="text-center w-full absolute left-0 right-0 top-6 pointer-events-none">
+      <h1 class="text-xl font-semibold text-gray-500 italic">  Уже готово!</h1>
+    </div>
+  </header>
+
+  <!-- Contact & Form Section -->
+  <section class="p-6 bg-white max-w-3xl mx-auto mt-10 rounded shadow">
+    <h2 class="text-xl font-semibold mb-4">Оставьте заявку</h2>
+    <form id="contact-form" class="space-y-4">
+      <input name="name" type="text" placeholder="Ваше имя" class="w-full border p-2 rounded" required>
+      <input name="phone" type="tel" placeholder="Телефон" class="w-full border p-2 rounded" required>
+      <input name="email" type="email" placeholder="Email" class="w-full border p-2 rounded">
+      <input name="size" type="text" placeholder="Размеры кухни" class="w-full border p-2 rounded">
+      <input name="type" type="text" placeholder="Тип кухни (П-образная и т.д.)" class="w-full border p-2 rounded">
+      <input name="facade" type="text" placeholder="Цвет фасадов" class="w-full border p-2 rounded">
+      <input name="tabletop" type="text" placeholder="Цвет столешницы" class="w-full border p-2 rounded">
+      <input name="photo" type="file" accept="image/*" class="w-full border p-2 rounded">
+      <textarea name="comment" rows="4" placeholder="Комментарий" class="w-full border p-2 rounded"></textarea>
+      <button type="submit" class="bg-[var(--main-orange)] text-white px-4 py-2 rounded hover:opacity-90">Отправить</button>
+    </form>
+    <p id="form-result" class="mt-4 text-green-600 hidden">Заявка отправлена!</p>
+  </section>
+
+  <!-- Gallery -->
+  <section class="p-6 mt-10">
+    <h2 class="text-xl font-semibold mb-4 text-center">Примеры наших работ</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
+      <img src="images/kitchen1.jpg" alt="Кухня 1" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
+      <img src="images/kitchen2.jpg" alt="Кухня 2" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
+      <img src="images/kitchen3.jpg" alt="Кухня 3" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
+      <img src="images/kitchen4.jpg" alt="Кухня 4" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
+      <img src="images/kitchen5.jpg" alt="Кухня 5" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
+      <img src="images/kitchen6.jpg" alt="Кухня 6" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
+    </div>
+  </section>
+
+  <!-- WhatsApp Button -->
+  <div class="fixed bottom-4 right-4">
+    <a href="https://wa.me/79141032700" target="_blank"
+       class="bg-green-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
+      Написать в WhatsApp
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center p-6 text-sm text-gray-600 mt-10">
+    © 2025 КухниЭкспресс. Все права защищены.
+  </footer>
+
+  <!-- EmailJS -->
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+
+      emailjs.sendForm('service_1dfo4df', 'template_zfymg2f', form)
+        .then(() => {
+          document.getElementById('form-result').classList.remove('hidden');
+          form.reset();
+        }, (error) => {
+          alert('Ошибка при отправке: ' + JSON.stringify(error));
+        });
+    });
+  </script>
+</body>
+</html>
