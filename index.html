@@ -6,64 +6,111 @@
   <title>КухниЭкспресс</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <script>
     (function () {
-      emailjs.init("Xlw8V8v2LngmP646R"); // Public User ID
+      emailjs.init("Xlw8V8v2LngmP646R");
     })();
   </script>
   <style>
     :root {
       --main-orange: #FFA559;
     }
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-[#f4ede7] text-gray-800">
 
-<!-- Header -->
-<header class="p-6 bg-white shadow flex items-center justify-between max-w-7xl mx-auto">
-    <!-- Лого слева -->
-    <div class="flex items-center space-x-4">
-      <img src="logo.png" alt="Логотип КухниЭкспресс" class="h-32 w-auto">
-  <div class="text-center w-full absolute left-0 right-0 top-6 pointer-events-none">
-      <h1 class="text-xl font-semibold text-gray-500 italic">  Уже готово!</h1>
+  <!-- Header -->
+  <header class="relative bg-[#F5F5F5] py-6 px-4">
+    <div class="container mx-auto flex items-center justify-between relative">
+  
+      <!-- Центр — логотип -->
+      <div class="w-full flex justify-center">
+        <img src="logo-new.png" alt="КухниЭкспресс" style="width: 612px; height: 267px; object-fit: contain;">
+      </div>
+  
+      <!-- Контакты и иконки в правом верхнем углу -->
+      <div class="absolute top-6 right-6 flex items-center space-x-4">
+        <a href="https://t.me/kitchenexpress_ykt" target="_blank">
+          <img src="tg.svg" alt="Telegram" class="h-5 w-5 hover:scale-110 transition-transform duration-200">
+        </a>
+        <a href="https://wa.me/79141032700" target="_blank">
+          <img src="wtapp.svg" alt="WhatsApp" class="h-5 w-5 hover:scale-110 transition-transform duration-200">
+          <a href="https://wa.me/79141032700" target="_blank">
+            <span class="text-black font-medium text-sm sm:text-base">+7 914 103 2700</span>
+          </a>
+      </div>
+  
     </div>
   </header>
 
-  <!-- Contact & Form Section -->
-  <section class="p-6 bg-white max-w-3xl mx-auto mt-10 rounded shadow">
+  <!-- Фабричные кухни -->
+  <section class="p-6 mt-10" style="background-color: #ece6df;">
+    <h2 class="text-xl font-semibold mb-4 text-center">Наши кухни от фабрики</h2>
+    <p class="text-center max-w-2xl mx-auto mb-6 text-gray-600">
+      Мы предлагаем модульные кухни фабричного производства, изготовленные из качественных материалов и укомплектованные надёжной фурнитурой. Быстрая установка и отличная эргономика!
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+      <img src="photograph (1).JPG" alt="Фабричная кухня 1" class="rounded shadow hover:scale-105 transition-transform duration-300">
+      <img src="photograph (2).jpg" alt="Фабричная кухня 2" class="rounded shadow hover:scale-105 transition-transform duration-300">
+      <img src="photograph (3).JPG" alt="Фабричная кухня 3" class="rounded shadow hover:scale-105 transition-transform duration-300">
+    </div>
+  </section>
+
+  <!-- Галерея -->
+  <section class="p-6 mt-10" style="background-color: #f4ede7;">
+    <h2 class="text-xl font-semibold mb-4 text-center">Примеры наших работ</h2>
+    <div class="overflow-x-auto whitespace-nowrap px-4">
+      <div class="inline-flex gap-4">
+        <a href="images/kitchen1.jpg" target="_blank">
+          <img src="images/kitchen1.jpg" alt="Кухня 1" class="w-72 h-48 object-cover rounded shadow hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="images/kitchen2.jpg" target="_blank">
+          <img src="images/kitchen2.jpg" alt="Кухня 2" class="w-72 h-48 object-cover rounded shadow hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="images/kitchen3.jpg" target="_blank">
+          <img src="images/kitchen3.jpg" alt="Кухня 3" class="w-72 h-48 object-cover rounded shadow hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="images/kitchen4.jpg" target="_blank">
+          <img src="images/kitchen4.jpg" alt="Кухня 4" class="w-72 h-48 object-cover rounded shadow hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="images/kitchen5.jpg" target="_blank">
+          <img src="images/kitchen5.jpg" alt="Кухня 5" class="w-72 h-48 object-cover rounded shadow hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="images/kitchen6.jpg" target="_blank">
+          <img src="images/kitchen6.jpg" alt="Кухня 6" class="w-72 h-48 object-cover rounded shadow hover:scale-105 transition-transform duration-300">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма заявки -->
+  <section class="p-6 max-w-3xl mx-auto mt-10 rounded shadow" style="background-color: #ece6df;">
     <h2 class="text-xl font-semibold mb-4">Оставьте заявку</h2>
     <form id="contact-form" class="space-y-4">
       <input name="name" type="text" placeholder="Ваше имя" class="w-full border p-2 rounded" required>
       <input name="phone" type="tel" placeholder="Телефон" class="w-full border p-2 rounded" required>
       <input name="email" type="email" placeholder="Email" class="w-full border p-2 rounded">
       <input name="size" type="text" placeholder="Размеры кухни" class="w-full border p-2 rounded">
-      <input name="type" type="text" placeholder="Тип кухни (П-образная и т.д.)" class="w-full border p-2 rounded">
+      <div id="upload-area" class="w-full border-2 border-dashed border-[var(--main-orange)] p-6 rounded text-center text-gray-500 cursor-pointer hover:bg-orange-50 transition">
+        Перетащите фото кухни сюда или нажмите для выбора
+        <input name="photo" type="file" id="file-input" accept="image/*" class="hidden">
+      </div>
       <input name="facade" type="text" placeholder="Цвет фасадов" class="w-full border p-2 rounded">
       <input name="tabletop" type="text" placeholder="Цвет столешницы" class="w-full border p-2 rounded">
-      <input name="photo" type="file" accept="image/*" class="w-full border p-2 rounded">
       <textarea name="comment" rows="4" placeholder="Комментарий" class="w-full border p-2 rounded"></textarea>
       <button type="submit" class="bg-[var(--main-orange)] text-white px-4 py-2 rounded hover:opacity-90">Отправить</button>
     </form>
     <p id="form-result" class="mt-4 text-green-600 hidden">Заявка отправлена!</p>
   </section>
 
-  <!-- Gallery -->
-  <section class="p-6 mt-10">
-    <h2 class="text-xl font-semibold mb-4 text-center">Примеры наших работ</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
-      <img src="images/kitchen1.jpg" alt="Кухня 1" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
-      <img src="images/kitchen2.jpg" alt="Кухня 2" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
-      <img src="images/kitchen3.jpg" alt="Кухня 3" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
-      <img src="images/kitchen4.jpg" alt="Кухня 4" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
-      <img src="images/kitchen5.jpg" alt="Кухня 5" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
-      <img src="images/kitchen6.jpg" alt="Кухня 6" class="gallery-img rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer">
-    </div>
-  </section>
-
-  <!-- WhatsApp Button -->
+  <!-- Кнопка WhatsApp -->
   <div class="fixed bottom-4 right-4">
     <a href="https://wa.me/79141032700" target="_blank"
-       class="bg-green-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
+      class="bg-green-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
       Написать в WhatsApp
     </a>
   </div>
@@ -73,19 +120,39 @@
     © 2025 КухниЭкспресс. Все права защищены.
   </footer>
 
-  <!-- EmailJS -->
+  <!-- Скрипт -->
   <script>
-    document.getElementById('contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const form = e.target;
+    window.addEventListener("DOMContentLoaded", () => {
+      const uploadArea = document.getElementById("upload-area");
+      const fileInput = document.getElementById("file-input");
 
-      emailjs.sendForm('service_1dfo4df', 'template_zfymg2f', form)
-        .then(() => {
-          document.getElementById('form-result').classList.remove('hidden');
-          form.reset();
-        }, (error) => {
-          alert('Ошибка при отправке: ' + JSON.stringify(error));
-        });
+      uploadArea.addEventListener("click", () => fileInput.click());
+      uploadArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        uploadArea.classList.add("bg-orange-100");
+      });
+      uploadArea.addEventListener("dragleave", () => {
+        uploadArea.classList.remove("bg-orange-100");
+      });
+      uploadArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove("bg-orange-100");
+        const files = e.dataTransfer.files;
+        fileInput.files = files;
+      });
+
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const form = e.target;
+
+        emailjs.sendForm('service_1dfo4df', 'template_zfymg2f', form)
+          .then(() => {
+            document.getElementById('form-result').classList.remove('hidden');
+            form.reset();
+          }, (error) => {
+            alert('Ошибка при отправке: ' + JSON.stringify(error));
+          });
+      });
     });
   </script>
 </body>
