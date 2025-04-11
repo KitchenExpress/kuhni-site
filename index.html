@@ -226,12 +226,11 @@
     <p>© 2025 КухниЭкспресс. Все права защищены.</p>
     <p>Адрес: г. Якутск, пр. Михаила Николаева , 7/6</p>
   </footer>
-
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       const uploadArea = document.getElementById("upload-area");
       const fileInput = document.getElementById("file-input");
-      const imagePreview = document.getElementById("image-preview"); // Элемент для предварительного просмотра
+      const fileInfo = document.getElementById("file-info"); // Элемент для отображения имени файла
 
       uploadArea.addEventListener("click", () => fileInput.click());
       uploadArea.addEventListener("dragover", (e) => {
@@ -246,34 +245,20 @@
         uploadArea.classList.remove("bg-orange-100");
         const files = e.dataTransfer.files;
         fileInput.files = files;
-        updateImagePreview(); // Обновляем предварительный просмотр после drop
+        updateFileInfo(); // Обновляем информацию о файле после drop
       });
 
       fileInput.addEventListener("change", () => {
-        updateImagePreview(); // Обновляем предварительный просмотр после выбора через input
+        updateFileInfo(); // Обновляем информацию о файле после выбора через input
       });
 
-      function updateImagePreview() {
+      function updateFileInfo() {
         if (fileInput.files.length > 0) {
-          const file = fileInput.files[0];
-          const reader = new FileReader();
-
-          reader.onload = (e) => {
-            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Предварительный просмотр" style="max-width: 100px; max-height: 100px;">`;
-            // Дополнительно можно скрыть текст приглашения к загрузке
-            uploadArea.textContent = "Фото загружено";
-          };
-
-          reader.onerror = function (error) {
-            console.error("Ошибка при чтении файла:", error);
-            alert('Ошибка при чтении файла.');
-          };
-
-          reader.readAsDataURL(file);
+          fileInfo.textContent = `Выбран файл: ${fileInput.files[0].name}`;
+          uploadArea.textContent = "Файл готов к отправке"; // Изменяем текст uploadArea
         } else {
-          imagePreview.innerHTML = ""; // Очищаем предварительный просмотр, если файл не выбран
-          // Возвращаем текст приглашения к загрузке
-          uploadArea.textContent = "Перетащите фото сюда или нажмите, чтобы выбрать";
+          fileInfo.textContent = ""; // Очищаем, если файл не выбран
+          uploadArea.textContent = "Перетащите фото сюда или нажмите, чтобы выбрать"; // Возвращаем исходный текст
         }
       }
 
@@ -305,8 +290,7 @@
               .then(() => {
                 document.getElementById('form-result').classList.remove('hidden');
                 form.reset();
-                imagePreview.innerHTML = ""; // Очищаем предварительный просмотр после успешной отправки
-                uploadArea.textContent = "Перетащите фото сюда или нажмите, чтобы выбрать"; // Возвращаем текст загрузки
+                updateFileInfo(); // Очищаем информацию о файле после успешной отправки
               }, (error) => {
                 alert('Ошибка при отправке: ' + JSON.stringify(error));
               });
@@ -317,7 +301,7 @@
             alert('Ошибка при чтении файла.');
           };
 
-          reader.readAsDataURL(file);
+          reader.readAsDataURL(file); // Read the file as a data URL
         } else {
           // если фото не загружено
           const formData = {
@@ -348,4 +332,4 @@
     Перетащите фото сюда или нажмите, чтобы выбрать
     <input type="file" id="file-input" class="hidden" accept="image/*">
   </div>
-  <div id="image-preview" class="mt-2"></div>
+  <div id="file-info" class="mt-2 text-sm text-gray-500"></div>
