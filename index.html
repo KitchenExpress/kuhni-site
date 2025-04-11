@@ -249,60 +249,67 @@
       });
 
       document.getElementById('contact-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const form = e.target;
-  const fileInput = document.getElementById('file-input');
-  const file = fileInput.files[0];
+        e.preventDefault();
+        const form = e.target;
+        const fileInput = document.getElementById('file-input');
+        const file = fileInput.files[0];
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function () {
-      const base64 = reader.result.split(',')[1]; // обрезаем data:image/jpeg;base64,...
-      const formData = {
-        name: form.name.value,
-        phone: form.phone.value,
-        email: form.email.value,
-        size: form.size.value,
-        kitchenType: form.kitchenType.value,
-        island: form.island.checked ? "Да" : "Нет",
-        facade: form.facade.value,
-        tabletop: form.tabletop.value,
-        comment: form.comment.value,
-        photo: base64
-      };
+        if (file) {
+          const reader = new FileReader();
 
-      emailjs.send('service_1dfo4df', 'template_zfymg2f', formData)
-        .then(() => {
-          document.getElementById('form-result').classList.remove('hidden');
-          form.reset();
-        }, (error) => {
-          alert('Ошибка при отправке: ' + JSON.stringify(error));
-        });
-    };
-    reader.readAsDataURL(file); // конвертирует файл в base64
-  } else {
-    const formData = {
-      name: form.name.value,
-      phone: form.phone.value,
-      email: form.email.value,
-      size: form.size.value,
-      kitchenType: form.kitchenType.value,
-      island: form.island.checked ? "Да" : "Нет",
-      facade: form.facade.value,
-      tabletop: form.tabletop.value,
-      comment: form.comment.value,
-      photo: "Фото не загружено"
-    };
+          reader.onload = function (event) {
+            const base64Image = event.target.result;
+            const formDataWithFile = {
+              name: form.name.value,
+              phone: form.phone.value,
+              email: form.email.value,
+              size: form.size.value,
+              kitchenType: form.kitchenType.value,
+              island: form.island.checked ? "Да" : "Нет",
+              facade: form.facade.value,
+              tabletop: form.tabletop.value,
+              comment: form.comment.value,
+              photo: base64Image // Include the base64 image data
+            };
 
-    emailjs.send('service_1dfo4df', 'template_zfymg2f', formData)
-      .then(() => {
-        document.getElementById('form-result').classList.remove('hidden');
-        form.reset();
-      }, (error) => {
-        alert('Ошибка при отправке: ' + JSON.stringify(error));
+            emailjs.send('service_1dfo4df', 'template_zfymg2f', formDataWithFile)
+              .then(() => {
+                document.getElementById('form-result').classList.remove('hidden');
+                form.reset();
+              }, (error) => {
+                alert('Ошибка при отправке: ' + JSON.stringify(error));
+              });
+          };
+
+          reader.onerror = function (error) {
+            console.error("Ошибка при чтении файла:", error);
+            alert('Ошибка при чтении файла.');
+          };
+
+          reader.readAsDataURL(file); // Read the file as a data URL
+        } else {
+          // если фото не загружено
+          const formData = {
+            name: form.name.value,
+            phone: form.phone.value,
+            email: form.email.value,
+            size: form.size.value,
+            kitchenType: form.kitchenType.value,
+            island: form.island.checked ? "Да" : "Нет",
+            facade: form.facade.value,
+            tabletop: form.tabletop.value,
+            comment: form.comment.value,
+            photo: "" // пусто, если файла нет
+          };
+
+          emailjs.send('service_1dfo4df', 'template_zfymg2f', formData)
+            .then(() => {
+              document.getElementById('form-result').classList.remove('hidden');
+              form.reset();
+            }, (error) => {
+              alert('Ошибка при отправке: ' + JSON.stringify(error));
+            });
+        }
       });
-  }
-});
+    });
   </script>
-</body>
-</html>
