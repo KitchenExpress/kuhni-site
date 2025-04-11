@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <script>
+  <script type="text/javascript">
     (function () {
       emailjs.init("Xlw8V8v2LngmP646R");
     })();
@@ -23,16 +23,13 @@
 </head>
 <body class="bg-[#f4ede7] text-gray-800">
 
-  <!-- Header -->
   <header class="relative bg-[#F5F5F5] py-6 px-4">
     <div class="container mx-auto flex items-center justify-between relative">
-  
-<!-- Центр — логотип -->
-<div class="w-full flex justify-center">
-  <img src="logo-new.png" alt="КухниЭкспресс" style="width: 700px; height: 300px; object-fit: contain;">
-</div>
-  
-      <!-- Контакты и иконки в правом верхнем углу -->
+
+      <div class="w-full flex justify-center">
+        <img src="logo-new.png" alt="КухниЭкспресс" style="width: 700px; height: 300px; object-fit: contain;">
+      </div>
+
       <div class="absolute top-6 right-6 flex items-center space-x-4">
         <a href="https://t.me/kitchenexpress_ykt" target="_blank">
           <img src="tg.svg" alt="Telegram" class="h-5 w-5 hover:scale-110 transition-transform duration-200">
@@ -42,12 +39,12 @@
           <a href="https://wa.me/79141032700" target="_blank">
             <span class="text-black font-medium text-sm sm:text-base">+7 914 103 2700</span>
           </a>
+        </a>
       </div>
-  
+
     </div>
   </header>
 
-  <!-- Фабричные кухни -->
   <section class="p-6 mt-10" style="background-color: #f4ede7;">
     <h2 class="text-xl font-semibold mb-4 text-center">Модульные кухни в Якутске</h2>
     <p class="text-center max-w-2xl mx-auto mb-6 text-gray-600">
@@ -59,7 +56,6 @@
       <img src="photograph (3).JPG" alt="Фабричная кухня 3" class="rounded shadow object-cover w-full h-64 hover:scale-105 transition-transform duration-300">
     </div>
   </section>
-<!-- Конструктив мебели -->
 <section class="p-6 mt-10" style="background-color: #f4ede7;">
   <h2 class="text-xl font-semibold mb-4 text-center">Конструктив мебели</h2>
   <div class="max-w-4xl mx-auto text-center text-gray-700 space-y-4">
@@ -70,7 +66,6 @@
     <p><strong>Ручка:</strong> чёрная матовая 200 мм, накладная</p>
   </div>
 
-  <!-- Логотипы с белым фоном -->
   <div class="bg-white mt-8 p-4 rounded">
     <div class="flex justify-center items-center gap-10 flex-wrap border-t pt-6">
       <img src="egger.png" alt="Egger" class="h-20 object-contain">
@@ -79,7 +74,6 @@
     </div>
   </div>
 </section>
-  <!-- Галерея -->
   <section class="p-6 mt-10" style="background-color: #f4ede7;">
     <h2 class="text-xl font-semibold mb-4 text-center">Примеры наших работ</h2>
     <div class="overflow-x-auto whitespace-nowrap px-4">
@@ -106,7 +100,6 @@
     </div>
   </section>
 
-<!-- Форма заявки -->
 <section class="p-6 max-w-3xl mx-auto mt-10 rounded shadow" style="background-color: #ece6df;">
   <h2 class="text-xl font-semibold mb-4">Оставьте заявку</h2>
   <form id="contact-form" class="space-y-4">
@@ -115,7 +108,6 @@
     <input name="email" type="email" placeholder="Email" class="w-full border p-2 rounded">
     <input name="size" type="text" placeholder="Размеры кухни" class="w-full border p-2 rounded">
 
-    <!-- Тип кухни -->
     <div>
       <label class="block font-medium mb-2">Тип кухни</label>
       <select name="kitchenType" class="w-full border p-2 rounded">
@@ -130,11 +122,9 @@
       </label>
     </div>
 
-<!-- Цвет фасадов -->
 <div class="mt-6">
   <h3 class="font-semibold mb-2">Выберите цвет фасада:</h3>
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <!-- Пример одной опции (дублируется ниже с разными значениями) -->
     <label class="cursor-pointer">
       <input type="radio" name="facade" value="Белый альпийский" class="hidden peer" required>
       <div class="rounded border-2 border-transparent peer-checked:border-orange-500 transition overflow-hidden">
@@ -193,28 +183,22 @@
   </div>
 </div>
 
-    <!-- Выбор столешницы -->
     <div>
       <label class="block font-medium mb-2">Цвет / текстура столешницы</label>
       <input name="tabletop" type="text" placeholder="Например: Светлый бетон, Дуб натуральный" class="w-full border p-2 rounded">
     </div>
 
-    <!-- Фото -->
     <div id="upload-area" class="w-full border-2 border-dashed border-[var(--main-orange)] p-6 rounded text-center text-gray-500 cursor-pointer hover:bg-orange-50 transition">
       Перетащите фото кухни сюда или нажмите для выбора
       <input name="photo" type="file" id="file-input" accept="image/*" class="hidden">
     </div>
+    <div id="file-info" class="mt-2 text-sm text-gray-500"></div> <textarea name="comment" rows="4" placeholder="Комментарий" class="w-full border p-2 rounded"></textarea>
 
-    <!-- Комментарий -->
-    <textarea name="comment" rows="4" placeholder="Комментарий" class="w-full border p-2 rounded"></textarea>
-    
-    <!-- Кнопка -->
     <button type="submit" class="bg-[var(--main-orange)] text-white px-4 py-2 rounded hover:opacity-90">Отправить</button>
   </form>
 
   <p id="form-result" class="mt-4 text-green-600 hidden">Заявка отправлена!</p>
 </section>
-  <!-- Кнопка WhatsApp -->
   <div class="fixed bottom-4 right-4">
     <a href="https://wa.me/79141032700" target="_blank"
       class="bg-green-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
@@ -232,7 +216,8 @@
       const fileInput = document.getElementById("file-input");
       const fileInfo = document.getElementById("file-info"); // Элемент для отображения имени файла
 
-      uploadArea.addEventListener("click", () => fileInput.click());
+      uploadArea.addEventListener("click", () => fileInput.click()); // <---- ВОТ ЭТА СТРОКА ДОЛЖНА БЫТЬ
+
       uploadArea.addEventListener("dragover", (e) => {
         e.preventDefault();
         uploadArea.classList.add("bg-orange-100");
@@ -328,8 +313,3 @@
       });
     });
   </script>
-  <div id="upload-area" class="cursor-pointer border-2 border-dashed p-6 text-center">
-    Перетащите фото сюда или нажмите, чтобы выбрать
-    <input type="file" id="file-input" class="hidden" accept="image/*">
-  </div>
-  <div id="file-info" class="mt-2 text-sm text-gray-500"></div>
