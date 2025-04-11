@@ -249,18 +249,60 @@
       });
 
       document.getElementById('contact-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const form = e.target;
+  e.preventDefault();
+  const form = e.target;
+  const fileInput = document.getElementById('file-input');
+  const file = fileInput.files[0];
 
-        emailjs.sendForm('service_1dfo4df', 'template_zfymg2f', form)
-          .then(() => {
-            document.getElementById('form-result').classList.remove('hidden');
-            form.reset();
-          }, (error) => {
-            alert('Ошибка при отправке: ' + JSON.stringify(error));
-          });
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const base64 = reader.result.split(',')[1]; // обрезаем data:image/jpeg;base64,...
+      const formData = {
+        name: form.name.value,
+        phone: form.phone.value,
+        email: form.email.value,
+        size: form.size.value,
+        kitchenType: form.kitchenType.value,
+        island: form.island.checked ? "Да" : "Нет",
+        facade: form.facade.value,
+        tabletop: form.tabletop.value,
+        comment: form.comment.value,
+        photo: base64
+      };
+
+      emailjs.send('service_1dfo4df', 'template_zfymg2f', formData)
+        .then(() => {
+          document.getElementById('form-result').classList.remove('hidden');
+          form.reset();
+        }, (error) => {
+          alert('Ошибка при отправке: ' + JSON.stringify(error));
+        });
+    };
+    reader.readAsDataURL(file); // конвертирует файл в base64
+  } else {
+    const formData = {
+      name: form.name.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      size: form.size.value,
+      kitchenType: form.kitchenType.value,
+      island: form.island.checked ? "Да" : "Нет",
+      facade: form.facade.value,
+      tabletop: form.tabletop.value,
+      comment: form.comment.value,
+      photo: "Фото не загружено"
+    };
+
+    emailjs.send('service_1dfo4df', 'template_zfymg2f', formData)
+      .then(() => {
+        document.getElementById('form-result').classList.remove('hidden');
+        form.reset();
+      }, (error) => {
+        alert('Ошибка при отправке: ' + JSON.stringify(error));
       });
-    });
+  }
+});
   </script>
 </body>
 </html>
