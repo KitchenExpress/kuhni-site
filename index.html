@@ -227,11 +227,11 @@
     <p>Адрес: г. Якутск, пр. Михаила Николаева , 7/6</p>
   </footer>
 
-  <!-- Скрипт -->
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       const uploadArea = document.getElementById("upload-area");
       const fileInput = document.getElementById("file-input");
+      const imagePreview = document.getElementById("image-preview"); // Элемент для предварительного просмотра
 
       uploadArea.addEventListener("click", () => fileInput.click());
       uploadArea.addEventListener("dragover", (e) => {
@@ -246,7 +246,36 @@
         uploadArea.classList.remove("bg-orange-100");
         const files = e.dataTransfer.files;
         fileInput.files = files;
+        updateImagePreview(); // Обновляем предварительный просмотр после drop
       });
+
+      fileInput.addEventListener("change", () => {
+        updateImagePreview(); // Обновляем предварительный просмотр после выбора через input
+      });
+
+      function updateImagePreview() {
+        if (fileInput.files.length > 0) {
+          const file = fileInput.files[0];
+          const reader = new FileReader();
+
+          reader.onload = (e) => {
+            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Предварительный просмотр" style="max-width: 100px; max-height: 100px;">`;
+            // Дополнительно можно скрыть текст приглашения к загрузке
+            uploadArea.textContent = "Фото загружено";
+          };
+
+          reader.onerror = function (error) {
+            console.error("Ошибка при чтении файла:", error);
+            alert('Ошибка при чтении файла.');
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          imagePreview.innerHTML = ""; // Очищаем предварительный просмотр, если файл не выбран
+          // Возвращаем текст приглашения к загрузке
+          uploadArea.textContent = "Перетащите фото сюда или нажмите, чтобы выбрать";
+        }
+      }
 
       document.getElementById('contact-form').addEventListener('submit', function (e) {
         e.preventDefault();
@@ -276,6 +305,8 @@
               .then(() => {
                 document.getElementById('form-result').classList.remove('hidden');
                 form.reset();
+                imagePreview.innerHTML = ""; // Очищаем предварительный просмотр после успешной отправки
+                uploadArea.textContent = "Перетащите фото сюда или нажмите, чтобы выбрать"; // Возвращаем текст загрузки
               }, (error) => {
                 alert('Ошибка при отправке: ' + JSON.stringify(error));
               });
@@ -286,7 +317,7 @@
             alert('Ошибка при чтении файла.');
           };
 
-          reader.readAsDataURL(file); // Read the file as a data URL
+          reader.readAsDataURL(file);
         } else {
           // если фото не загружено
           const formData = {
@@ -313,3 +344,8 @@
       });
     });
   </script>
+  <div id="upload-area" class="cursor-pointer border-2 border-dashed p-6 text-center">
+    Перетащите фото сюда или нажмите, чтобы выбрать
+    <input type="file" id="file-input" class="hidden" accept="image/*">
+  </div>
+  <div id="image-preview" class="mt-2"></div>
