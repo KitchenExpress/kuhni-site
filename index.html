@@ -7,11 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <script type="text/javascript">
-    (function () {
-      emailjs.init("Xlw8V8v2LngmP646R");
-    })();
-  </script>
   <style>
     :root {
       --main-orange: #FFA559;
@@ -216,7 +211,7 @@
       const fileInput = document.getElementById("file-input");
       const fileInfo = document.getElementById("file-info"); // Элемент для отображения имени файла
 
-      uploadArea.addEventListener("click", () => fileInput.click()); // <---- ВОТ ЭТА СТРОКА ДОЛЖНА БЫТЬ
+      uploadArea.addEventListener("click", () => fileInput.click()); // <---- УБЕДИТЕСЬ, ЧТО ЭТА СТРОКА ЕСТЬ
 
       uploadArea.addEventListener("dragover", (e) => {
         e.preventDefault();
@@ -270,6 +265,8 @@
               comment: form.comment.value,
               photo: base64Image // Include the base64 image data
             };
+
+            console.log("Base64 строка перед отправкой:", formDataWithFile.photo); // Проверка Base64 строки
 
             emailjs.send('service_1dfo4df', 'template_zfymg2f', formDataWithFile)
               .then(() => {
